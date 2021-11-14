@@ -24,5 +24,6 @@ class Chapter extends Model
     protected $fillable = [
         'name',
         'content',
+        'training_id',
     ];
 }
