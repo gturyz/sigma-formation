@@ -13,45 +13,15 @@
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-       <!-- Styles -->
+        <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-        <style type="text/css" media="screen">
-            html,
-            body {
-                height: 100%;
-            }
-
-            body {
-                display: flex;
-                align-items: center;
-            }
-
-            .form-signin {
-                width: 100%;
-                max-width: 450px;
-                margin: auto;
-            }
-            .form-signin .checkbox {
-                font-weight: 400;
-            }
-            .form-signin .form-control {
-                position: relative;
-                box-sizing: border-box;
-                height: auto;
-                font-size: 16px;
-            }
-            .form-signin .form-control:focus {
-                z-index: 2;
-            }
-        </style>
 
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body>
-        <div class="form-signin">
-            {{ $slot }}
+        <div class="container">
+            @yield('content')
         </div>
     </body>
 </html>

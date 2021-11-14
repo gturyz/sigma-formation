@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [TrainingController::class, 'index'])->name('trainingList');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
