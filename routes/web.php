@@ -20,10 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [TrainingController::class, 'index'])->name('trainingList');
 Route::get('/training/{id}', [TrainingController::class, 'show'])->name('trainingDetails');
 
-Route::post('/contact', [ContactController::class, 'send'])->name('sendMail');
+Route::post('/contact', [ContactController::class, 'send'])->name('sendMail')->middleware('auth');
 
-Route::put('users/{id}/accept', [UserController::class, 'accept'])->name('userAccept');
-Route::delete('users/{id}', [UserController::class, 'destroy'])->name('userDelete');
+Route::put('users/{id}/accept', [UserController::class, 'accept'])->name('userAccept')->middleware('auth');
+Route::delete('users/{id}', [UserController::class, 'destroy'])->name('userDelete')->middleware('auth');
+Route::put('users', [UserController::class, 'update'])->name('userUpdate')->middleware('auth');
+Route::get('/profile', [UserController::class, 'profile'])->name('profile')->middleware('auth');
 
 Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 

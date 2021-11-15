@@ -31,11 +31,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{route('trainingList')}}">Formations</a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="{{route('categoryList')}}">Categories</a>
-                    </li> --}}
 
                     @if(Auth::check())
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{{route('profile')}}">Profile</a>
+                        </li>
                         <li class="nav-item">{{Auth::user()->firstname}}</li>
                         <li class="nav-item">
                             <form method="post" action="{{route('logout')}}">
