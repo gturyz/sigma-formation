@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Training;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,7 @@ class TrainingController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function index()
     {
@@ -42,12 +43,14 @@ class TrainingController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Training  $training
-     * @return \Illuminate\Http\Response
+     * @param  int  $id
+     * @return \Illuminate\View\View
      */
-    public function show(Training $training)
+    public function show(int $id)
     {
-        //
+        $training = Training::find($id);
+        $categories = Category::all();
+        return view('training.details', compact(['training', 'categories']));
     }
 
     /**

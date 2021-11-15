@@ -17,10 +17,10 @@
                             <span class="badge bg-primary">{{$category->name}}</span>
                         @endforeach
                     </div>
-                    <p class="card-text"><small class="text-muted">Ecrit par {{$training->user->firstname}}</small></p>
+                    <p class="card-text"><small class="text-muted">Ecrit par {{$training->user->firstname}} {{$training->user->lastname}}</small></p>
                     <p class="card-text"><small class="text-muted">Mis à jour le {{$training->updated_at}}</small></p>
                     <div class="d-flex">
-                        {{-- <a href="{{route('trainingDetails', $training->id)}}" class="btn btn-primary">Détails</a> --}}
+                        <a href="{{route('trainingDetails', $training->id)}}" class="btn btn-primary">Détails</a>
                         @if(Auth::check() && Auth::user()->id === $training->user_id)
                             <form method="training" action="{{route('trainingDelete', $training->id)}}">
                                 @csrf

@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [TrainingController::class, 'index'])->name('trainingList');
+Route::get('/training/{id}', [TrainingController::class, 'show'])->name('trainingDetails');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
