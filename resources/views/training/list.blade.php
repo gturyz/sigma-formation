@@ -21,13 +21,13 @@
                     <p class="card-text"><small class="text-muted">Mis à jour le {{$training->updated_at}}</small></p>
                     <div class="d-flex">
                         <a href="{{route('trainingDetails', $training->id)}}" class="btn btn-primary">Détails</a>
-                        @if(Auth::check() && Auth::user()->id === $training->user_id)
+                        {{-- @if(Auth::check() && Auth::user()->id === $training->user_id)
                             <form method="training" action="{{route('trainingDelete', $training->id)}}">
                                 @csrf
                                 @method('DELETE')
                                 <button class="btn btn-danger">Supprimer</button>
                             </form>
-                        @endif
+                        @endif --}}
 
                     </div>
                 </div>

@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,8 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [TrainingController::class, 'index'])->name('trainingList');
 Route::get('/training/{id}', [TrainingController::class, 'show'])->name('trainingDetails');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::post('/contact', [ContactController::class, 'send'])->name('sendMail');
+
+Route::put('users/{id}/accept', [UserController::class, 'accept'])->name('userAccept');
+Route::delete('users/{id}', [UserController::class, 'destroy'])->name('userDelete');
+
+Route::get('/dashboard', [AdminController::class, 'dashboard'])->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

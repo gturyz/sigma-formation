@@ -1,59 +1,46 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/" class="d-flex justify-content-center mb-4">
-                <x-application-logo width=64 height=64 />
-            </a>
-        </x-slot>
+@extends('layouts.guest')
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('register') }}">
+@section('content')
+    <div class="container">
+        @if ($errors->any())
+            <ul class="alert alert-danger">
+                @foreach ($errors->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        @endif
+        <h1>Formulaire de contact</h1>
+        <form action="{{route('sendMail')}}" method="post">
             @csrf
-
-            <!-- Name -->
-            <div>
-                <x-label for="name" :value="__('Name')" />
-
-                <x-input id="name" class="" type="text" name="name" :value="old('name')" required autofocus />
+            <div class="mb-3">
+                <label>Prénom</label>
+                <input type="text" name="firstname" required class="form-control">
             </div>
-
-            <!-- Email Address -->
-            <div class="mt-4">
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="" type="email" name="email" :value="old('email')" required />
+            <div class="mb-3">
+                <label>Nom</label>
+                <input type="text" name="lastname" required class="form-control">
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class=""
-                                type="password"
-                                name="password"
-                                required autocomplete="new-password" />
+            <div class="mb-3">
+                <label>Email</label>
+                <input type="text" name="email" required class="form-control">
             </div>
-
-            <!-- Confirm Password -->
-            <div class="mt-4">
-                <x-label for="password_confirmation" :value="__('Confirm Password')" />
-
-                <x-input id="password_confirmation" class=""
-                                type="password"
-                                name="password_confirmation" required />
+            <div class="mb-3">
+                <label>Mot de passe</label>
+                <input type="password" name="password" required class="form-control">
             </div>
-
-            <div class="d-flex justify-content-end mt-4">
-                <a class="text-muted" href="{{ route('login') }}" style="margin-right: 15px; margin-top: 15px;">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-button class="ml-4">
-                    {{ __('Register') }}
-                </x-button>
+            <div class="mb-3">
+                <label>Confirmation mot de passe</label>
+                <input type="password" name="password_confirmation" required class="form-control">
             </div>
+            <div class="mb-3">
+                <label>Sujet</label>
+                <input type="text" name="subject" required class="form-control">
+            </div>
+            <div class="mb-3">
+                <label>Message</label>
+                <textarea name="message" class="form-control" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Envoyer le message</button>
         </form>
-    </x-auth-card>
-</x-guest-layout>
+    </div>
+@endsection

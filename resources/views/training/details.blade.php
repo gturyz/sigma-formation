@@ -6,7 +6,7 @@
             <h1>Détails de la formation</h1>
             <div class="row">
                 <div class="col-md-6">
-                    <form action="{{route('trainingUpdate', $training->id)}}" method="training">
+                    {{-- <form action="{{route('trainingUpdate', $training->id)}}" method="training">
                         @csrf
                         @method('PUT')
                         <div class="mb-3">
@@ -34,10 +34,10 @@
                         </div>
                         <button type="submit" class="btn btn-primary">Modifier</button>
                         <p class="form-text">Ecrit le {{$training->created_at->format('d/m/yy')}}</p>
-                    </form>
+                    </form> --}}
                 </div>
                 <div class="col-md-6">
-                    <form action="{{route('trainingUpdateImage', $training->id)}}" method="training"
+                    {{-- <form action="{{route('trainingUpdateImage', $training->id)}}" method="training"
                         enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
@@ -46,17 +46,17 @@
                             <input type="file" class="form-control" name="image" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Modifier</button>
-                    </form>
+                    </form> --}}
                 </div>
             </div>
 
-            <form action="{{route('trainingDelete', $training->id)}}" method="training">
+            {{-- <form action="{{route('trainingDelete', $training->id)}}" method="training">
                 @csrf
                 @method('DELETE')
                 <a href="{{route('trainingList')}}"
                     class="btn btn-primary">Retourner à la liste des formations</a>
                 <button type="submit" class="btn btn-danger">Supprimer cette formation</button>
-            </form>
+            </form> --}}
         @else
             <h2>Nom de la formation</h2>
             <p>{{$training->name}}</p>
@@ -74,6 +74,14 @@
             </ul>
             <h2>Types</h2>
             <p>{{$training->type->name}}</p>
+            <h2>Chapitres</h2>
+            <ul>
+            @foreach ($training->chapters as $chapter)
+                <li>
+                    <h4>{{$chapter->name}}</h4>
+                    <p>{{$chapter->content}}</p>
+                </li>
+            @endforeach
             <a href="{{route('trainingList')}}"
                 class="btn btn-primary">Retourner à la liste des formations</a>
         @endif
